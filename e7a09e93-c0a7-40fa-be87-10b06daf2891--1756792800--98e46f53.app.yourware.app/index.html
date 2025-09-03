@@ -1,0 +1,1791 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turf Solution - The Easiest Way to Play in Mirpur</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        :root {
+            /* Modern Neutral Color Palette */
+            --primary-50: #f8faf9;
+            --primary-100: #f0f4f2;
+            --primary-200: #d9e5df;
+            --primary-300: #b8d0c2;
+            --primary-400: #8fb49e;
+            --primary-500: #6b9080;
+            --primary-600: #547567;
+            --primary-700: #455f54;
+            --primary-800: #394d46;
+            --primary-900: #31413b;
+            /* Soft Grays */
+            --gray-50: #fafafa;
+            --gray-100: #f5f5f5;
+            --gray-200: #e5e5e5;
+            --gray-300: #d4d4d4;
+            --gray-400: #a3a3a3;
+            --gray-500: #737373;
+            --gray-600: #525252;
+            --gray-700: #404040;
+            --gray-800: #262626;
+            --gray-900: #171717;
+            /* Warm Accents */
+            --warm-50: #fefdf9;
+            --warm-100: #fdf8f0;
+            --warm-200: #f9ebd9;
+            --warm-300: #f4d6b8;
+            --warm-400: #ecb888;
+            --warm-500: #e39858;
+            --warm-600: #d17e3c;
+            --warm-700: #b86830;
+            --warm-800: #945530;
+            --warm-900: #78472b;
+            /* Muted Blue Accents */
+            --blue-50: #f0f7ff;
+            --blue-100: #e0efff;
+            --blue-200: #b9ddff;
+            --blue-300: #7cc5ff;
+            --blue-400: #36abff;
+            --blue-500: #0c92f1;
+            --blue-600: #0074ce;
+            --blue-700: #005ca7;
+            --blue-800: #064e8a;
+            --blue-900: #0b4372;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            line-height: 1.6;
+            color: var(--gray-800);
+            background: var(--gray-50);
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* Enhanced Header with Subtle Glassmorphism */
+
+        header {
+            background: rgba(248, 250, 249, 0.85);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border-bottom: 1px solid var(--primary-200);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        header.scrolled {
+            background: rgba(248, 250, 249, 0.95);
+            box-shadow: 0 8px 32px rgba(107, 144, 128, 0.08);
+            padding: 16px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary-700);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .logo::before {
+            content: '⚽';
+            font-size: 32px;
+            filter: grayscale(0.3);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--gray-600);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary-700);
+            transform: translateY(-1px);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary-600), var(--warm-500));
+            transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-radius: 1px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .login-btn {
+            background: linear-gradient(135deg, var(--primary-600), var(--primary-700));
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 16px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 4px 16px rgba(107, 144, 128, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .login-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .login-btn:hover::before {
+            left: 100%;
+        }
+
+        .login-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(107, 144, 128, 0.3);
+        }
+
+        /* Sophisticated Hero Section */
+
+        .hero {
+            background: linear-gradient(135deg, var(--gray-50) 0%, var(--primary-50) 40%, var(--warm-50) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 20% 30%, rgba(107, 144, 128, 0.03) 0%, transparent 50%), radial-gradient(circle at 80% 70%, rgba(227, 152, 88, 0.03) 0%, transparent 50%), linear-gradient(135deg, transparent 30%, rgba(248, 250, 249, 0.4) 70%);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            min-height: 70vh;
+        }
+
+        .hero-text {
+            opacity: 0;
+            animation: fadeInUp 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.3s forwards;
+        }
+
+        .hero-visual {
+            position: relative;
+            opacity: 0;
+            animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1) 0.6s forwards;
+        }
+
+        .hero h1 {
+            font-size: clamp(3rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--gray-900), var(--primary-700), var(--warm-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -0.03em;
+        }
+
+        .hero p {
+            font-size: 20px;
+            font-weight: 400;
+            color: var(--gray-600);
+            margin-bottom: 40px;
+            line-height: 1.6;
+            max-width: 540px;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            padding: 16px 32px;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta-primary {
+            background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
+            color: white;
+            border: none;
+            box-shadow: 0 8px 24px rgba(107, 144, 128, 0.2);
+        }
+
+        .cta-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 16px 40px rgba(107, 144, 128, 0.3);
+        }
+
+        .cta-secondary {
+            background: rgba(248, 250, 249, 0.8);
+            backdrop-filter: blur(12px);
+            color: var(--gray-700);
+            border: 1px solid var(--primary-300);
+        }
+
+        .cta-secondary:hover {
+            background: rgba(248, 250, 249, 0.95);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 32px rgba(107, 144, 128, 0.15);
+        }
+
+        /* Visual Hero Element */
+
+        .hero-visual-element {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, var(--primary-100), var(--warm-100));
+            border-radius: 32px;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(107, 144, 128, 0.1);
+            overflow: hidden;
+        }
+
+        .hero-visual-element::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 20%, rgba(107, 144, 128, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 80%, rgba(227, 152, 88, 0.1) 0%, transparent 50%);
+        }
+
+        .floating-cards {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            width: 80%;
+        }
+
+        .floating-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            padding: 24px;
+            border-radius: 20px;
+            border: 1px solid rgba(107, 144, 128, 0.1);
+            animation: float 6s ease-in-out infinite;
+            text-align: center;
+        }
+
+        .floating-card:nth-child(2) {
+            animation-delay: -2s;
+        }
+
+        .floating-card:nth-child(3) {
+            animation-delay: -4s;
+        }
+
+        .floating-card:nth-child(4) {
+            animation-delay: -1s;
+        }
+
+        .floating-card h3 {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--gray-800);
+            margin-bottom: 8px;
+        }
+
+        .floating-card p {
+            font-size: 14px;
+            color: var(--gray-600);
+        }
+
+        /* Enhanced Features Section */
+
+        .features {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--gray-50) 0%, var(--primary-50) 100%);
+            position: relative;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: clamp(2.5rem, 5vw, 3.5rem);
+            font-weight: 800;
+            margin-bottom: 80px;
+            color: var(--gray-900);
+            position: relative;
+            letter-spacing: -0.02em;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -16px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-600), var(--warm-500));
+            border-radius: 2px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 32px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(107, 144, 128, 0.1);
+            padding: 40px;
+            border-radius: 24px;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .feature-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(107, 144, 128, 0.03), transparent);
+            transition: left 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover::before {
+            left: 100%;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(107, 144, 128, 0.12);
+            border-color: rgba(107, 144, 128, 0.2);
+        }
+
+        .feature-icon {
+            width: 64px;
+            height: 64px;
+            background: linear-gradient(135deg, var(--primary-100), var(--warm-100));
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            margin-bottom: 24px;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover .feature-icon {
+            transform: scale(1.1) rotate(5deg);
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .feature-card p {
+            color: var(--gray-600);
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Enhanced Turf Listings */
+
+        .turfs {
+            padding: 120px 0;
+            background: linear-gradient(180deg, var(--primary-50) 0%, var(--gray-50) 100%);
+        }
+
+        .turf-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 32px;
+        }
+
+        .turf-card {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 28px;
+            overflow: hidden;
+            border: 1px solid rgba(107, 144, 128, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            opacity: 0;
+            transform: translateY(40px);
+        }
+
+        .turf-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .turf-card:hover {
+            transform: translateY(-12px);
+            box-shadow: 0 32px 64px rgba(107, 144, 128, 0.15);
+        }
+
+        .turf-image-container {
+            position: relative;
+            height: 240px;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--primary-200), var(--warm-200));
+        }
+
+        .turf-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .turf-card:hover .turf-image {
+            transform: scale(1.08);
+        }
+
+        .turf-badge {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(12px);
+            color: var(--primary-700);
+            padding: 8px 16px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border: 1px solid rgba(107, 144, 128, 0.2);
+        }
+
+        .turf-badge.popular {
+            background: rgba(227, 152, 88, 0.95);
+            color: white;
+            border-color: rgba(227, 152, 88, 0.3);
+        }
+
+        .availability-indicator {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(34, 197, 94, 0.95);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 12px;
+            font-weight: 600;
+            backdrop-filter: blur(12px);
+        }
+
+        .limited {
+            background: rgba(249, 115, 22, 0.95);
+        }
+
+        .turf-content {
+            padding: 32px;
+        }
+
+        .turf-name {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--gray-900);
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .turf-rating {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 16px;
+        }
+
+        .stars {
+            color: var(--warm-500);
+            font-weight: 600;
+        }
+
+        .turf-location {
+            color: var(--gray-500);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 15px;
+        }
+
+        .turf-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-700);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+
+        .turf-price .period {
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--gray-500);
+        }
+
+        .turf-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .turf-feature {
+            background: linear-gradient(135deg, var(--primary-50), var(--warm-50));
+            color: var(--primary-700);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            border: 1px solid rgba(107, 144, 128, 0.15);
+        }
+
+        .book-btn {
+            background: linear-gradient(135deg, var(--primary-700), var(--primary-800));
+            color: white;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 16px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .book-btn:hover {
+            background: linear-gradient(135deg, var(--primary-800), var(--primary-900));
+            transform: translateY(-2px);
+            box-shadow: 0 12px 24px rgba(107, 144, 128, 0.3);
+        }
+
+        /* Social Proof Section */
+
+        .social-proof {
+            padding: 100px 0;
+            background: linear-gradient(135deg, var(--gray-800), var(--primary-900));
+            color: white;
+            text-align: center;
+            position: relative;
+        }
+
+        .social-proof::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at 30% 40%, rgba(107, 144, 128, 0.1) 0%, transparent 50%), radial-gradient(circle at 70% 60%, rgba(227, 152, 88, 0.1) 0%, transparent 50%);
+        }
+
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+            margin-top: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .stat-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 40px 24px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .stat-item:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: var(--primary-300);
+            display: block;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            opacity: 0.9;
+            font-weight: 500;
+        }
+
+        /* Enhanced Footer */
+
+        footer {
+            background: linear-gradient(135deg, var(--gray-900), var(--gray-800));
+            color: white;
+            padding: 80px 0 40px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-section h3 {
+            color: var(--primary-300);
+            margin-bottom: 24px;
+            font-weight: 700;
+            font-size: 20px;
+        }
+
+        .footer-section a {
+            color: var(--gray-300);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-weight: 500;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary-300);
+            transform: translateX(4px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--gray-700);
+            padding-top: 32px;
+            text-align: center;
+            color: var(--gray-400);
+        }
+
+        /* Modal Styles */
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(23, 23, 23, 0.6);
+            backdrop-filter: blur(12px);
+        }
+
+        .modal-content {
+            background: white;
+            margin: 3% auto;
+            padding: 48px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 520px;
+            position: relative;
+            box-shadow: 0 32px 64px rgba(0, 0, 0, 0.2);
+            animation: modalSlideIn 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .close {
+            position: absolute;
+            right: 24px;
+            top: 24px;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            color: var(--gray-500);
+            border-radius: 12px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .close:hover {
+            color: var(--gray-800);
+            background: var(--gray-100);
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--gray-800);
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 16px;
+            border: 2px solid var(--gray-200);
+            border-radius: 12px;
+            font-size: 16px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--gray-50);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: var(--primary-500);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(107, 144, 128, 0.1);
+        }
+
+        /* Animations */
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes modalSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-40px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* Mobile Responsive */
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            .hero-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                text-align: center;
+            }
+            .cta-buttons {
+                justify-content: center;
+            }
+            .features-grid,
+            .turf-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-container {
+                grid-template-columns: 1fr 1fr;
+                gap: 24px;
+            }
+            .container {
+                padding: 0 16px;
+            }
+        }
+
+        /* Scroll animations */
+
+        .scroll-animate {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .scroll-animate.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header id="header">
+        <nav class="container">
+            <div class="logo">Turf Solution</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#turfs">Find Turf</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <button class="login-btn" id="loginButton" role="button" aria-label="Login to your account">
+                👤 Login
+            </button>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Find Your Perfect Pitch</h1>
+                    <p>The easiest way to discover and book affordable turf slots in Mirpur. Your perfect football experience awaits with premium facilities and unbeatable prices.</p>
+                    <div class="cta-buttons">
+                        <a href="#turfs" class="cta-button cta-primary">
+                            🔍 Find Turf Now
+                        </a>
+                        <a href="#features" class="cta-button cta-secondary">
+                            ▶️ How It Works
+                        </a>
+                    </div>
+                </div>
+                <div class="hero-visual">
+                    <div class="hero-visual-element">
+                        <div class="floating-cards">
+                            <div class="floating-card">
+                                <h3>Easy Booking</h3>
+                                <p>Book in seconds</p>
+                            </div>
+                            <div class="floating-card">
+                                <h3>Best Prices</h3>
+                                <p>Affordable rates</p>
+                            </div>
+                            <div class="floating-card">
+                                <h3>Premium Fields</h3>
+                                <p>Top quality turfs</p>
+                            </div>
+                            <div class="floating-card">
+                                <h3>24/7 Available</h3>
+                                <p>Book anytime</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Why Choose Turf Solution?</h2>
+            <div class="features-grid">
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">🔍</div>
+                    <h3>Easy Discovery</h3>
+                    <p>Browse through the best turf fields in Mirpur with detailed information, photos, and real-time availability at your fingertips.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Instant Booking</h3>
+                    <p>Book your preferred time slot in seconds. No more calling around or waiting for confirmations - it's all automated.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">💰</div>
+                    <h3>Best Prices</h3>
+                    <p>Compare prices across all venues and find the most affordable options that fit your budget without compromising quality.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">📱</div>
+                    <h3>Mobile Friendly</h3>
+                    <p>Book on the go with our mobile-optimized platform. Perfect for last-minute game planning and spontaneous matches.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Secure Payment</h3>
+                    <p>Safe and secure online payment options with instant confirmation and comprehensive booking protection.</p>
+                </div>
+                <div class="feature-card scroll-animate">
+                    <div class="feature-icon">👥</div>
+                    <h3>Community</h3>
+                    <p>Connect with other players, form teams, and join the growing football community in Mirpur and beyond.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof Section -->
+    <section class="social-proof">
+        <div class="container">
+            <h2 class="section-title" style="color: white;">Trusted by Football Lovers</h2>
+            <div class="stats-container">
+                <div class="stat-item scroll-animate">
+                    <span class="stat-number">2,500+</span>
+                    <span class="stat-label">Happy Players</span>
+                </div>
+                <div class="stat-item scroll-animate">
+                    <span class="stat-number">15+</span>
+                    <span class="stat-label">Premium Turfs</span>
+                </div>
+                <div class="stat-item scroll-animate">
+                    <span class="stat-number">5,000+</span>
+                    <span class="stat-label">Successful Bookings</span>
+                </div>
+                <div class="stat-item scroll-animate">
+                    <span class="stat-number">4.9★</span>
+                    <span class="stat-label">Average Rating</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Available Turfs -->
+    <section id="turfs" class="turfs">
+        <div class="container">
+            <h2 class="section-title scroll-animate">Popular Turf Fields in Mirpur</h2>
+            <div class="turf-grid">
+                <div class="turf-card scroll-animate">
+                    <div class="turf-image-container">
+                        <img src="https://public.youware.com/users-website-assets/prod/e7a09e93-c0a7-40fa-be87-10b06daf2891/g51fe92c160a34ab356fa8fa200682caf5ce725e62dd45780f48a5360512bc8c8e789723df2d083220a45afd814acb617_640.jpg" alt="Green Valley Sports Turf" class="turf-image">
+                        <div class="turf-badge popular">Popular</div>
+                        <div class="availability-indicator available">Available</div>
+                    </div>
+                    <div class="turf-content">
+                        <div class="turf-name">Green Valley Sports</div>
+                        <div class="turf-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>4.8 (234 reviews)</span>
+                        </div>
+                        <div class="turf-location">
+                            📍 Mirpur DOHS, Dhaka
+                        </div>
+                        <div class="turf-price">
+                            ৳800<span class="period">/hour</span>
+                        </div>
+                        <div class="turf-features">
+                            <span class="turf-feature">11v11</span>
+                            <span class="turf-feature">Floodlights</span>
+                            <span class="turf-feature">Parking</span>
+                            <span class="turf-feature">Changing Room</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal('Green Valley Sports')">
+                            📅 Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="turf-card scroll-animate">
+                    <div class="turf-image-container">
+                        <img src="https://public.youware.com/users-website-assets/prod/e7a09e93-c0a7-40fa-be87-10b06daf2891/g95609061b092aed8ffe40ac04a3d9a1d444c80d04287ad886f19ae80f6a6e844f4e0981c3c5326ebd732d3cdf10f12b83a6fdf55a11f3f8f862a2be7234cf710_640.jpg" alt="Mirpur Stadium Annex Turf"
+                            class="turf-image">
+                        <div class="turf-badge">New</div>
+                        <div class="availability-indicator limited">3 slots left</div>
+                    </div>
+                    <div class="turf-content">
+                        <div class="turf-name">Mirpur Stadium Annex</div>
+                        <div class="turf-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.6 (189 reviews)</span>
+                        </div>
+                        <div class="turf-location">
+                            📍 Mirpur-1, Dhaka
+                        </div>
+                        <div class="turf-price">
+                            ৳600<span class="period">/hour</span>
+                        </div>
+                        <div class="turf-features">
+                            <span class="turf-feature">7v7</span>
+                            <span class="turf-feature">AC Lounge</span>
+                            <span class="turf-feature">Referee</span>
+                            <span class="turf-feature">Equipment</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal('Mirpur Stadium Annex')">
+                            📅 Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="turf-card scroll-animate">
+                    <div class="turf-image-container">
+                        <img src="https://public.youware.com/users-website-assets/prod/e7a09e93-c0a7-40fa-be87-10b06daf2891/g93cdd48c8c54b7ef0d89e585ff0d1fee8a2178a4c86df112feabbb540a40f2abbf5472d20b7de9aee493bdbf94590dec7459b2ebba5e2bd7fd67ef05f3c97b30_640.jpg" alt="Champions Arena Turf"
+                            class="turf-image">
+                        <div class="availability-indicator available">Available</div>
+                    </div>
+                    <div class="turf-content">
+                        <div class="turf-name">Champions Arena</div>
+                        <div class="turf-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.5 (156 reviews)</span>
+                        </div>
+                        <div class="turf-location">
+                            📍 Mirpur-10, Dhaka
+                        </div>
+                        <div class="turf-price">
+                            ৳500<span class="period">/hour</span>
+                        </div>
+                        <div class="turf-features">
+                            <span class="turf-feature">5v5</span>
+                            <span class="turf-feature">Cafeteria</span>
+                            <span class="turf-feature">Equipment</span>
+                            <span class="turf-feature">WiFi</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal('Champions Arena')">
+                            📅 Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="turf-card scroll-animate">
+                    <div class="turf-image-container">
+                        <img src="https://public.youware.com/users-website-assets/prod/e7a09e93-c0a7-40fa-be87-10b06daf2891/g07be36f4dce09a5775ba9491d5ccf7460ef4f0dc171d542fbac56bdddc96f0c5cd5567670031c27adaf5b5a9ff0f6946410ce48e92bb9b29beb92bbc85191999_640.jpg" alt="Elite Football Club Turf"
+                            class="turf-image">
+                        <div class="turf-badge">Premium</div>
+                        <div class="availability-indicator available">Available</div>
+                    </div>
+                    <div class="turf-content">
+                        <div class="turf-name">Elite Football Club</div>
+                        <div class="turf-rating">
+                            <span class="stars">★★★★★</span>
+                            <span>4.9 (312 reviews)</span>
+                        </div>
+                        <div class="turf-location">
+                            📍 Mirpur-2, Dhaka
+                        </div>
+                        <div class="turf-price">
+                            ৳1000<span class="period">/hour</span>
+                        </div>
+                        <div class="turf-features">
+                            <span class="turf-feature">11v11</span>
+                            <span class="turf-feature">Premium</span>
+                            <span class="turf-feature">Coaching</span>
+                            <span class="turf-feature">VIP Lounge</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal('Elite Football Club')">
+                            📅 Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="turf-card scroll-animate">
+                    <div class="turf-image-container">
+                        <img src="https://public.youware.com/users-website-assets/prod/e7a09e93-c0a7-40fa-be87-10b06daf2891/gcc110af8bbfa2a1ed30b8d292b22d679a16e22afc8c03e7617db0b54e9ce8b5c34f2905950b55d7e6595c1309c06508f6347765cd20c7c0b093e604e259dbd12_640.jpg" alt="Mirpur Sports Complex Turf"
+                            class="turf-image">
+                        <div class="availability-indicator available">Available</div>
+                    </div>
+                    <div class="turf-content">
+                        <div class="turf-name">Mirpur Sports Complex</div>
+                        <div class="turf-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.3 (98 reviews)</span>
+                        </div>
+                        <div class="turf-location">
+                            📍 Mirpur-12, Dhaka
+                        </div>
+                        <div class="turf-price">
+                            ৳400<span class="period">/hour</span>
+                        </div>
+                        <div class="turf-features">
+                            <span class="turf-feature">Budget</span>
+                            <span class="turf-feature">7v7</span>
+                            <span class="turf-feature">Group Rate</span>
+                            <span class="turf-feature">Basic</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal('Mirpur Sports Complex')">
+                            📅 Book Now
+                        </button>
+                    </div>
+                </div>
+
+                <div class="turf-card scroll-animate">
+                    <div class="turf-image-container">
+                        <img src="https://public.youware.com/users-website-assets/prod/e7a09e93-c0a7-40fa-be87-10b06daf2891/gd4ac7e6fe8cae85eb6afcb25f32f7ed8d8a1a64dc0611beee5113354977db7e7a1ca8b7028b371783bfd70ba51d3ebb9a4e09111c817ff861a174ba49f05f99f_640.jpg" alt="Night Owl Turf"
+                            class="turf-image">
+                        <div class="turf-badge">24/7</div>
+                        <div class="availability-indicator available">Available</div>
+                    </div>
+                    <div class="turf-content">
+                        <div class="turf-name">Night Owl Turf</div>
+                        <div class="turf-rating">
+                            <span class="stars">★★★★☆</span>
+                            <span>4.7 (203 reviews)</span>
+                        </div>
+                        <div class="turf-location">
+                            📍 Mirpur-6, Dhaka
+                        </div>
+                        <div class="turf-price">
+                            ৳700<span class="period">/hour</span>
+                        </div>
+                        <div class="turf-features">
+                            <span class="turf-feature">24/7</span>
+                            <span class="turf-feature">LED Lights</span>
+                            <span class="turf-feature">Security</span>
+                            <span class="turf-feature">Night Play</span>
+                        </div>
+                        <button class="book-btn" onclick="openBookingModal('Night Owl Turf')">
+                            📅 Book Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Turf Solution</h3>
+                    <p>Your ultimate destination for finding and booking the perfect turf in Mirpur. Play more, worry less!</p>
+                    <div style="margin-top: 24px;">
+                        <span style="color: var(--primary-300);">📍</span> Serving Mirpur & Greater Dhaka
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <a href="#home">Home</a>
+                    <a href="#features">Features</a>
+                    <a href="#turfs">Find Turf</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <a href="#">Help Center</a>
+                    <a href="#">Booking Policy</a>
+                    <a href="#">Cancellation</a>
+                    <a href="#">Payment Options</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Us</h3>
+                    <a href="tel:+8801234567890">📞 +880 123 456 7890</a>
+                    <a href="mailto:info@turfsolution.com">✉️ info@turfsolution.com</a>
+                    <a href="#">📍 Mirpur, Dhaka, Bangladesh</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 Turf Solution. All rights reserved. Made with ❤️ for football lovers in Mirpur.</p>
+         <p>Terms of Service | Privacy Policy | Developed by Mostafic Yellahy Nahid</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Enhanced Booking Modal -->
+    <div id="bookingModal" class="modal" role="dialog" aria-labelledby="bookingModalTitle" aria-modal="true">
+        <div class="modal-content">
+            <span class="close" onclick="closeBookingModal()" aria-label="Close booking form" tabindex="0">&times;</span>
+            <h2 id="bookingModalTitle" style="margin-bottom: 32px; color: var(--gray-900); font-weight: 700;">Book Your Slot</h2>
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="turfName">Selected Turf:</label>
+                    <input type="text" id="turfName" readonly style="background: var(--gray-100);" aria-readonly="true">
+                </div>
+                <div class="form-group">
+                    <label for="playerName">Your Name:</label>
+                    <input type="text" id="playerName" placeholder="Enter your full name" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="playerPhone">Phone Number:</label>
+                    <input type="tel" id="playerPhone" placeholder="+880 123 456 7890" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="bookingDate">Date:</label>
+                    <input type="date" id="bookingDate" required aria-required="true">
+                </div>
+                <div class="form-group">
+                    <label for="timeSlot">Time Slot:</label>
+                    <select id="timeSlot" required aria-required="true">
+                        <option value="">Select Time</option>
+                        <option value="06:00-07:00">6:00 AM - 7:00 AM</option>
+                        <option value="07:00-08:00">7:00 AM - 8:00 AM</option>
+                        <option value="08:00-09:00">8:00 AM - 9:00 AM</option>
+                        <option value="16:00-17:00">4:00 PM - 5:00 PM</option>
+                        <option value="17:00-18:00">5:00 PM - 6:00 PM</option>
+                        <option value="18:00-19:00">6:00 PM - 7:00 PM</option>
+                        <option value="19:00-20:00">7:00 PM - 8:00 PM</option>
+                        <option value="20:00-21:00">8:00 PM - 9:00 PM</option>
+                        <option value="21:00-22:00">9:00 PM - 10:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="duration">Duration:</label>
+                    <select id="duration" required aria-required="true">
+                        <option value="1">1 Hour</option>
+                        <option value="2">2 Hours</option>
+                        <option value="3">3 Hours</option>
+                    </select>
+                </div>
+                <button type="submit" class="cta-button cta-primary" style="width: 100%; margin: 24px 0 0 0; padding: 16px;">
+                    💳 Confirm Booking
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <script src="https://lib.youware.com/youware-lib-consumer.1756473351.js" id="yourware-lib"></script>
+    <script>
+        // Set minimum date to today
+        document.getElementById('bookingDate').min = new Date().toISOString().split('T')[0];
+
+        // Create login modal and functionality
+        function createLoginModal() {
+            const loginModal = document.createElement('div');
+            loginModal.id = 'loginModal';
+            loginModal.className = 'modal';
+            loginModal.setAttribute('role', 'dialog');
+            loginModal.setAttribute('aria-labelledby', 'loginModalTitle');
+            loginModal.setAttribute('aria-modal', 'true');
+
+            const modalContent = document.createElement('div');
+            modalContent.className = 'modal-content';
+
+            const closeButton = document.createElement('span');
+            closeButton.className = 'close';
+            closeButton.innerHTML = '&times;';
+            closeButton.setAttribute('aria-label', 'Close login form');
+            closeButton.setAttribute('tabindex', '0');
+            closeButton.onclick = closeLoginModal;
+
+            const title = document.createElement('h2');
+            title.id = 'loginModalTitle';
+            title.style.marginBottom = '32px';
+            title.style.color = 'var(--gray-900)';
+            title.style.fontWeight = '700';
+            title.innerHTML = 'Login to Your Account';
+
+            const form = document.createElement('form');
+            form.id = 'loginForm';
+
+            const emailGroup = document.createElement('div');
+            emailGroup.className = 'form-group';
+            const emailLabel = document.createElement('label');
+            emailLabel.setAttribute('for', 'userEmail');
+            emailLabel.innerHTML = 'Email:';
+            const emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.id = 'userEmail';
+            emailInput.placeholder = 'your.email@example.com';
+            emailInput.required = true;
+            emailInput.setAttribute('aria-required', 'true');
+            emailGroup.appendChild(emailLabel);
+            emailGroup.appendChild(emailInput);
+
+            const passwordGroup = document.createElement('div');
+            passwordGroup.className = 'form-group';
+            const passwordLabel = document.createElement('label');
+            passwordLabel.setAttribute('for', 'userPassword');
+            passwordLabel.innerHTML = 'Password:';
+            const passwordInput = document.createElement('input');
+            passwordInput.type = 'password';
+            passwordInput.id = 'userPassword';
+            passwordInput.placeholder = 'Enter your password';
+            passwordInput.required = true;
+            passwordInput.setAttribute('aria-required', 'true');
+            passwordGroup.appendChild(passwordLabel);
+            passwordGroup.appendChild(passwordInput);
+
+            const loginButton = document.createElement('button');
+            loginButton.type = 'submit';
+            loginButton.className = 'cta-button cta-primary';
+            loginButton.style.width = '100%';
+            loginButton.style.margin = '24px 0 0 0';
+            loginButton.style.padding = '16px';
+            loginButton.innerHTML = '🔐 Log In';
+
+            const registerPrompt = document.createElement('p');
+            registerPrompt.style.textAlign = 'center';
+            registerPrompt.style.marginTop = '24px';
+            registerPrompt.style.color = 'var(--gray-600)';
+
+            const registerLink = document.createElement('a');
+            registerLink.href = '#';
+            registerLink.textContent = 'Register now';
+            registerLink.style.color = 'var(--primary-700)';
+            registerLink.style.textDecoration = 'none';
+            registerLink.style.fontWeight = '600';
+            registerLink.id = 'registerLink';
+            registerLink.setAttribute('tabindex', '0');
+            registerLink.setAttribute('role', 'button');
+            registerLink.setAttribute('aria-label', 'Register for a new account');
+
+            registerLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeLoginModal();
+                openRegisterModal();
+            });
+
+            registerLink.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    closeLoginModal();
+                    openRegisterModal();
+                }
+            });
+
+            registerPrompt.innerHTML = 'Don\'t have an account? ';
+            registerPrompt.appendChild(registerLink);
+
+            form.appendChild(emailGroup);
+            form.appendChild(passwordGroup);
+            form.appendChild(loginButton);
+
+            modalContent.appendChild(closeButton);
+            modalContent.appendChild(title);
+            modalContent.appendChild(form);
+            modalContent.appendChild(registerPrompt);
+
+            loginModal.appendChild(modalContent);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('This is a demo login. To enable real authentication, please add backend functionality.');
+                closeLoginModal();
+            });
+
+            return loginModal;
+        }
+
+        function createRegisterModal() {
+            const registerModal = document.createElement('div');
+            registerModal.id = 'registerModal';
+            registerModal.className = 'modal';
+            registerModal.setAttribute('role', 'dialog');
+            registerModal.setAttribute('aria-labelledby', 'registerModalTitle');
+            registerModal.setAttribute('aria-modal', 'true');
+
+            const modalContent = document.createElement('div');
+            modalContent.className = 'modal-content';
+
+            const closeButton = document.createElement('span');
+            closeButton.className = 'close';
+            closeButton.innerHTML = '&times;';
+            closeButton.setAttribute('aria-label', 'Close registration form');
+            closeButton.setAttribute('tabindex', '0');
+            closeButton.onclick = closeRegisterModal;
+
+            const title = document.createElement('h2');
+            title.id = 'registerModalTitle';
+            title.style.marginBottom = '32px';
+            title.style.color = 'var(--gray-900)';
+            title.style.fontWeight = '700';
+            title.innerHTML = 'Create Your Account';
+
+            const form = document.createElement('form');
+            form.id = 'registerForm';
+
+            // Name field
+            const nameGroup = document.createElement('div');
+            nameGroup.className = 'form-group';
+            const nameLabel = document.createElement('label');
+            nameLabel.setAttribute('for', 'fullName');
+            nameLabel.innerHTML = 'Full Name:';
+            const nameInput = document.createElement('input');
+            nameInput.type = 'text';
+            nameInput.id = 'fullName';
+            nameInput.placeholder = 'Enter your full name';
+            nameInput.required = true;
+            nameInput.setAttribute('aria-required', 'true');
+            nameGroup.appendChild(nameLabel);
+            nameGroup.appendChild(nameInput);
+
+            // Email field
+            const emailGroup = document.createElement('div');
+            emailGroup.className = 'form-group';
+            const emailLabel = document.createElement('label');
+            emailLabel.setAttribute('for', 'registerEmail');
+            emailLabel.innerHTML = 'Email:';
+            const emailInput = document.createElement('input');
+            emailInput.type = 'email';
+            emailInput.id = 'registerEmail';
+            emailInput.placeholder = 'your.email@example.com';
+            emailInput.required = true;
+            emailInput.setAttribute('aria-required', 'true');
+            emailGroup.appendChild(emailLabel);
+            emailGroup.appendChild(emailInput);
+
+            // Password field
+            const passwordGroup = document.createElement('div');
+            passwordGroup.className = 'form-group';
+            const passwordLabel = document.createElement('label');
+            passwordLabel.setAttribute('for', 'registerPassword');
+            passwordLabel.innerHTML = 'Password:';
+            const passwordInput = document.createElement('input');
+            passwordInput.type = 'password';
+            passwordInput.id = 'registerPassword';
+            passwordInput.placeholder = 'Choose a strong password';
+            passwordInput.required = true;
+            passwordInput.setAttribute('aria-required', 'true');
+            passwordGroup.appendChild(passwordLabel);
+            passwordGroup.appendChild(passwordInput);
+
+            const registerButton = document.createElement('button');
+            registerButton.type = 'submit';
+            registerButton.className = 'cta-button cta-primary';
+            registerButton.style.width = '100%';
+            registerButton.style.margin = '24px 0 0 0';
+            registerButton.style.padding = '16px';
+            registerButton.innerHTML = '👤 Create Account';
+
+            const loginPrompt = document.createElement('p');
+            loginPrompt.style.textAlign = 'center';
+            loginPrompt.style.marginTop = '24px';
+            loginPrompt.style.color = 'var(--gray-600)';
+
+            const loginLink = document.createElement('a');
+            loginLink.href = '#';
+            loginLink.textContent = 'Login here';
+            loginLink.style.color = 'var(--primary-700)';
+            loginLink.style.textDecoration = 'none';
+            loginLink.style.fontWeight = '600';
+            loginLink.id = 'backToLoginLink';
+            loginLink.setAttribute('tabindex', '0');
+            loginLink.setAttribute('role', 'button');
+            loginLink.setAttribute('aria-label', 'Go back to login');
+
+            loginLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                closeRegisterModal();
+                openLoginModal();
+            });
+
+            loginLink.addEventListener('keydown', function(e) {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    closeRegisterModal();
+                    openLoginModal();
+                }
+            });
+
+            loginPrompt.innerHTML = 'Already have an account? ';
+            loginPrompt.appendChild(loginLink);
+
+            form.appendChild(nameGroup);
+            form.appendChild(emailGroup);
+            form.appendChild(passwordGroup);
+            form.appendChild(registerButton);
+
+            modalContent.appendChild(closeButton);
+            modalContent.appendChild(title);
+            modalContent.appendChild(form);
+            modalContent.appendChild(loginPrompt);
+
+            registerModal.appendChild(modalContent);
+
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('This is a demo registration. To enable real authentication, please add backend functionality.');
+                closeRegisterModal();
+            });
+
+            return registerModal;
+        }
+
+        function openLoginModal() {
+            let loginModal = document.getElementById('loginModal');
+
+            if (!loginModal) {
+                loginModal = createLoginModal();
+                document.body.appendChild(loginModal);
+            }
+
+            loginModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                document.getElementById('userEmail').focus();
+            }, 100);
+        }
+
+        function closeLoginModal() {
+            const loginModal = document.getElementById('loginModal');
+            if (loginModal) {
+                loginModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.getElementById('loginButton').focus();
+            }
+        }
+
+        function openRegisterModal() {
+            let registerModal = document.getElementById('registerModal');
+
+            if (!registerModal) {
+                registerModal = createRegisterModal();
+                document.body.appendChild(registerModal);
+            }
+
+            registerModal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                document.getElementById('fullName').focus();
+            }, 100);
+        }
+
+        function closeRegisterModal() {
+            const registerModal = document.getElementById('registerModal');
+            if (registerModal) {
+                registerModal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+                document.getElementById('loginButton').focus();
+            }
+        }
+
+        // Attach login button click handler
+        document.getElementById('loginButton').addEventListener('click', openLoginModal);
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.getElementById('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.scroll-animate').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Booking Modal Functions
+        function openBookingModal(turfName) {
+            document.getElementById('turfName').value = turfName;
+            const modal = document.getElementById('bookingModal');
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+
+            setTimeout(() => {
+                document.getElementById('playerName').focus();
+            }, 100);
+        }
+
+        function closeBookingModal() {
+            const modal = document.getElementById('bookingModal');
+            modal.style.display = 'none';
+            document.getElementById('bookingForm').reset();
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const bookingModal = document.getElementById('bookingModal');
+            const loginModal = document.getElementById('loginModal');
+            const registerModal = document.getElementById('registerModal');
+
+            if (event.target == bookingModal) {
+                closeBookingModal();
+            }
+
+            if (event.target == loginModal) {
+                closeLoginModal();
+            }
+
+            if (event.target == registerModal) {
+                closeRegisterModal();
+            }
+        }
+
+        // Enhanced keyboard accessibility - close modals with Escape key
+        window.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                const bookingModal = document.getElementById('bookingModal');
+                const loginModal = document.getElementById('loginModal');
+                const registerModal = document.getElementById('registerModal');
+
+                if (bookingModal && bookingModal.style.display === 'block') {
+                    closeBookingModal();
+                }
+
+                if (loginModal && loginModal.style.display === 'block') {
+                    closeLoginModal();
+                }
+
+                if (registerModal && registerModal.style.display === 'block') {
+                    closeRegisterModal();
+                }
+            }
+        });
+
+        // Enhanced booking form submission
+        document.getElementById('bookingForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            const bookingData = {
+                turf: document.getElementById('turfName').value,
+                name: document.getElementById('playerName').value,
+                phone: document.getElementById('playerPhone').value,
+                date: document.getElementById('bookingDate').value,
+                time: document.getElementById('timeSlot').value,
+                duration: document.getElementById('duration').value
+            };
+
+            const confirmationMessage = `🏆 Booking Request Submitted Successfully!
+
+📍 Turf: ${bookingData.turf}
+👤 Name: ${bookingData.name}
+📱 Phone: ${bookingData.phone}
+📅 Date: ${bookingData.date}
+⏰ Time: ${bookingData.time}
+⏱️ Duration: ${bookingData.duration} hour(s)
+
+💡 Note: This is a demo. To enable real bookings with payment processing, please add backend functionality.
+
+Thank you for choosing Turf Solution! 🚀`;
+
+            alert(confirmationMessage);
+            closeBookingModal();
+        });
+
+        // Enhanced CTA button actions
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                if (button.textContent.includes('Find Turf Now')) {
+                    e.preventDefault();
+                    document.getElementById('turfs').scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add loading animation to book buttons
+        document.querySelectorAll('.book-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const originalText = this.innerHTML;
+                this.innerHTML = '⏳ Opening...';
+                setTimeout(() => {
+                    this.innerHTML = originalText;
+                }, 1000);
+            });
+        });
+    </script>
+</body>
+
+</html>

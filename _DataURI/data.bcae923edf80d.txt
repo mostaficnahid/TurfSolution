@@ -1,0 +1,1 @@
+chrome-extension://jgocjgkdladclacgmkkiklmdcmngjcba/locales/en/gmail.json
